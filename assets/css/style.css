@@ -21,3 +21,27 @@ body {
 	letter-spacing: 20px;
 	text-align: center;
 }
+
+.question {
+	color: #f6f6f6;
+	margin-top: 85px;
+	font-family: 'Aldrich';
+	font-size: 24px;
+	letter-spacing: 10px;
+}
+
+.answerA {
+	color: #f6f6f6;
+	margin-top: 135px;
+	font-family: 'Aldrich';
+	font-size: 8;
+	text-align: center;
+}
+
+.answerB {
+	color: #f6f6f6;
+	margin-top: 20px;
+	font-family: 'Aldrich';
+	font-size: 8;
+	text-align: center;
+}
