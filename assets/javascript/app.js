@@ -70,7 +70,7 @@ $(".start").on("click", function() {	// A function that responds to clicking the
 
 
 	$("#title").remove();	//Removes the title
-	// $("#start").remove();	//Removes the start button
+	$("#start").remove();	//Removes the start button
 
 
 	order++
@@ -82,9 +82,8 @@ $(".start").on("click", function() {	// A function that responds to clicking the
     $("#answerD").text(questionArray[order].answerD,);
 
 	if (order+1) {
-		$(count).val('');
-		// clearInterval(counter);
-		var count = 45;
+
+		var count = 6;
 		var counter=setInterval(timer, 1000);
 		
 		function timer() {
@@ -94,8 +93,33 @@ $(".start").on("click", function() {	// A function that responds to clicking the
 		if (count <= 0) {
 			clearInterval(counter);
 			order++
+
+			$("#question").text(questionArray[order].question );
+    		$("#answerA").text(questionArray[order].answerA,);
+    		$("#answerB").text(questionArray[order].answerB,);
+    		$("#answerC").text(questionArray[order].answerC,);
+    		$("#answerD").text(questionArray[order].answerD,);
+
+    		count = 6;
+			counter=setInterval(timer, 1000);
 			}
 		}
 	};
+
+});
+
+$(".answerA").on("click", function() {
+timer()	
+// 	clearInterval(counter);
+// 	order++
+
+// 			$("#question").text(questionArray[order].question );
+//     		$("#answerA").text(questionArray[order].answerA,);
+//     		$("#answerB").text(questionArray[order].answerB,);
+//     		$("#answerC").text(questionArray[order].answerC,);
+//     		$("#answerD").text(questionArray[order].answerD,);
+
+// 	count = 6;
+// 	counter=setInterval(timer, 1000);
 
 });
