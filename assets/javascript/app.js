@@ -11,8 +11,7 @@
 
 var title = "Cosmic Quiz";	// A variable for the game title.
 var startButton = "Click Here to Start";	// A variable for the start button.
-var StartTime = 45;
-var i=-1;
+var order=-1;
 var questionArray = [
 	
 	questA = {
@@ -68,18 +67,35 @@ $("#title").text(title);	// Displays the game title.
 $("#start").text(startButton);	// Displays the start button
 
 $(".start").on("click", function() {	// A function that responds to clicking the start button.
-	// for (var i=0; i<questionArray.length; i++) {
-		$("#title").removeAttr(title);
 
-	i++
- console.log( questionArray[i].question );
-// $.each(questionArray, function( key, value ) {
+
+	$("#title").remove();	//Removes the title
+	// $("#start").remove();	//Removes the start button
+
+
+	order++
  
-    $("#question").text(questionArray[i].question );
-    $("#answerA").text(questionArray[i].answerA,);
-    $("#answerB").text(questionArray[i].answerB,);
-    $("#answerC").text(questionArray[i].answerC,);
-    $("#answerD").text(questionArray[i].answerD,);
-// });
+    $("#question").text(questionArray[order].question );
+    $("#answerA").text(questionArray[order].answerA,);
+    $("#answerB").text(questionArray[order].answerB,);
+    $("#answerC").text(questionArray[order].answerC,);
+    $("#answerD").text(questionArray[order].answerD,);
+
+	if (order+1) {
+		$(count).val('');
+		// clearInterval(counter);
+		var count = 45;
+		var counter=setInterval(timer, 1000);
+		
+		function timer() {
+			count=count-1;
+			document.getElementById("timer").innerHTML = count;
+	
+		if (count <= 0) {
+			clearInterval(counter);
+			order++
+			}
+		}
+	};
 
 });
