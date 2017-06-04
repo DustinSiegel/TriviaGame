@@ -8,18 +8,15 @@
 // Create a function that determines the the game is over and displays the number of correct answers and wrong answers
 // if time, add in music or sound effects and images
 
-
-var title = "Cosmic Quiz";	// A variable for the game title.
-var startButton = "Click Here to Start";	// A variable for the start button.
-var order=-1;
-var questionArray = [
+var questionArray = [ 	//An array of objects. Each object has properties (question and answers) and values(the string containing the words in this case)
 	
 	questA = {
 		question: "What is the shortest unit of measurment?",
 		answerA: "A quark pair",
-		answerB: "A helameter",
+		answerB: "A planck length",
 		answerC: "One micron",
-		answerD: "A planck length"
+		answerD: "A helameter",
+		correctAnswer: "A planck length"
 	},
 
 	questB = {
@@ -27,7 +24,8 @@ var questionArray = [
 		answerA: "An giant mass of incandecent gas",
 		answerB: "An ongoing chemical reaction where hydrogen is turned into helium",
 		answerC: "The star that is nearest to earth",
-		answerD: "All of the above"
+		answerD: "All of the above",
+		correctAnswer: "All of the above"
 	},
 
 	questC = {
@@ -36,6 +34,7 @@ var questionArray = [
 		answerB: "Based on the Greek myth; Opening Pandora's box to see if the cat is alive or dead represents taking a seemingly innocent and tiny action that ends up having all consuming and disatorous concequences.",
 		answerC: "Marie Curie's short term lab assistent's cat, who was unintentianaly (and unfortunatly for the cat), instramental in the discovery of radiation.",
 		answerD: "When the Cromulens show up on earth, and force the planet to compete in an inter-planitary version of who's got talent, in episode 5, season 1 of Rick and Morty (Get Schwifty). Shrodinger's Cat was the name of one of the more unique bands that competed against earth and ultimatly lost and got their planet destroyed.",
+		correctAnswer: "A thought experiment that represents the paridoxial nature of quantum superposition."	
 	},
 
 	questD = {
@@ -43,7 +42,8 @@ var questionArray = [
 		answerA: "It refers to the the constant and unchangable nature of the speed of light and how we can only go forward in time at one constant rate.",
 		answerB: "Energy is equal to mass times the speed of light squared: Basically stating that mass and enegy are different forms of the same thing and are therefor interchangable.",
 		answerC: "Since light has no mass, it takes no energy and will therefore traval in a straight line indefinatly until reflected or obsorbed.",
-		answerD: "Einstien's proof that we in fact live in a multi-dimentional universe."
+		answerD: "Einstien's proof that we in fact live in a multi-dimentional universe.",
+		correctAnswer: "Energy is equal to mass times the speed of light squared: Basically stating that mass and enegy are different forms of the same thing and are therefor interchangable." 
 	},
 
 	questE = {
@@ -52,6 +52,7 @@ var questionArray = [
 		answerB: "Dr. Richard Dawkins",
 		answerC: "Stephen Hawkins",
 		answerD: "Neil Degrasse Tyson",
+		correctAnswer: "Neil Degrasse Tyson"
 	},
 
 	questF = {
@@ -60,66 +61,86 @@ var questionArray = [
 		answerB: "NASA scientists created a machine that was temperaraly attached to the satalite in a subsequent mission in 1993, that meticulously re-ground the main lense to componsate for the warping that occurred during launch",
 		answerC: "The focusing proplem seemed to just 'fix itself'. One of the many misteries of space.",
 		answerD: "Performing a record setting 5 space walks in 5 days, astronauts retrofitted the telescope with software and hardware that compensated for the miscalculation in the design of convex angle of the main telescope lense.",
+		correctAnswer: "Performing a record setting 5 space walks in 5 days, astronauts retrofitted the telescope with software and hardware that compensated for the miscalculation in the design of convex angle of the main telescope lense."
 	}
-]
+];
+
+var title = "Cosmic Quiz";	// A variable for the game title.
+var startButton = "Click Here to Start";	// A variable for the start button.
+var order=-1;
+var count
+var counter
+var timerRunning = false;
+var rightAnswers = 0;
+var wrongAnswers = 0;
+var chosenAnswer;
+var compareAnswer;
 
 $("#title").text(title);	// Displays the game title.
 $("#start").text(startButton);	// Displays the start button
 
+function nextQuestion() {
+	order++;
+	count = 6;
+	
+		$("#question").text(questionArray[order].question);
+    	$("#answerA").text(questionArray[order].answerA);
+    	$("#answerB").text(questionArray[order].answerB);
+    	$("#answerC").text(questionArray[order].answerC);
+    	$("#answerD").text(questionArray[order].answerD);
+}
+
+function timer() {
+	count=count-1;
+	document.getElementById("timer").innerHTML = count;
+
+	if (!timerRunning) {
+		counter=setInterval(timer, 1000);
+		timerRunning = true;
+	}
+
+	if (count <= 0) {
+		nextQuestion();
+	}
+};
+
+// function stopTimer() {
+// 	clearInterval(counter);
+// };
+
+// function answerChecker() {
+// 	if (chosenAnswer === correctAnswer) {
+// 		rightAnswers++;
+// 	} else if chosenAnswer !=== correctAnswer {
+// 		wrongAnswers++;
+// 	}
+// };
+
 $(".start").on("click", function() {	// A function that responds to clicking the start button.
-
-
 	$("#title").remove();	//Removes the title
 	$("#start").remove();	//Removes the start button
-
-
-	order++
- 
-    $("#question").text(questionArray[order].question );
-    $("#answerA").text(questionArray[order].answerA,);
-    $("#answerB").text(questionArray[order].answerB,);
-    $("#answerC").text(questionArray[order].answerC,);
-    $("#answerD").text(questionArray[order].answerD,);
-
-	if (order+1) {
-
-		var count = 6;
-		var counter=setInterval(timer, 1000);
-		
-		function timer() {
-			count=count-1;
-			document.getElementById("timer").innerHTML = count;
-	
-		if (count <= 0) {
-			clearInterval(counter);
-			order++
-
-			$("#question").text(questionArray[order].question );
-    		$("#answerA").text(questionArray[order].answerA,);
-    		$("#answerB").text(questionArray[order].answerB,);
-    		$("#answerC").text(questionArray[order].answerC,);
-    		$("#answerD").text(questionArray[order].answerD,);
-
-    		count = 6;
-			counter=setInterval(timer, 1000);
-			}
-		}
-	};
-
+	nextQuestion();	
+	timer();
 });
 
 $(".answerA").on("click", function() {
-timer()	
-// 	clearInterval(counter);
-// 	order++
+	chosenAnswer  = "";
+	nextQuestion();	
+	timer();
+});
 
-// 			$("#question").text(questionArray[order].question );
-//     		$("#answerA").text(questionArray[order].answerA,);
-//     		$("#answerB").text(questionArray[order].answerB,);
-//     		$("#answerC").text(questionArray[order].answerC,);
-//     		$("#answerD").text(questionArray[order].answerD,);
 
-// 	count = 6;
-// 	counter=setInterval(timer, 1000);
+$(".answerB").on("click", function() {
+	nextQuestion();	
+	timer();
+});
 
+$(".answerC").on("click", function() {
+	nextQuestion();	
+	timer();	
+});
+
+$(".answerD").on("click", function() {
+	nextQuestion();	
+	timer();
 });
