@@ -73,6 +73,7 @@ var counter
 var timerRunning = false;
 var rightAnswers = 0;
 var wrongAnswers = 0;
+var missedAnswers = 0;
 var chosenAnswer;
 var compareAnswer;
 
@@ -100,7 +101,9 @@ function timer() {
 	}
 
 	if (count <= 0) {
+		missedAnswers++;
 		nextQuestion();
+		console.log(missedAnswers);
 	}
 };
 
