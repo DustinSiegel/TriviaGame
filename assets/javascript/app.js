@@ -75,14 +75,13 @@ var rightAnswers = 0;
 var wrongAnswers = 0;
 var missedAnswers = 0;
 var chosenAnswer;
-var compareAnswer;
 
 $("#title").text(title);	// Displays the game title.
 $("#start").text(startButton);	// Displays the start button
 
 function nextQuestion() {
 	order++;
-	count = 6;
+	count = 45;
 	
 		$("#question").text(questionArray[order].question);
     	$("#answerA").text(questionArray[order].answerA);
@@ -103,7 +102,7 @@ function timer() {
 	if (count <= 0) {
 		missedAnswers++;
 		nextQuestion();
-		console.log(missedAnswers);
+		console.log("missed: " + missedAnswers);
 	}
 };
 
@@ -111,13 +110,17 @@ function timer() {
 // 	clearInterval(counter);
 // };
 
-// function answerChecker() {
-// 	if (chosenAnswer === correctAnswer) {
-// 		rightAnswers++;
-// 	} else if chosenAnswer !=== correctAnswer {
-// 		wrongAnswers++;
-// 	}
-// };
+function answerChecker() {
+var correctAnswers = questionArray[order].correctAnswer;
+console.log(questionArray[order].correctAnswer);
+	if (chosenAnswer === correctAnswers) {
+		rightAnswers++;
+		console.log("correct: " + rightAnswers)
+	} else if (chosenAnswer !== correctAnswers) {
+		wrongAnswers++;
+		console.log("wrong: " + wrongAnswers)
+	}
+};
 
 $(".start").on("click", function() {	// A function that responds to clicking the start button.
 	$("#title").remove();	//Removes the title
@@ -127,23 +130,30 @@ $(".start").on("click", function() {	// A function that responds to clicking the
 });
 
 $(".answerA").on("click", function() {
-	chosenAnswer  = "";
+	chosenAnswer = questionArray[order].answerA;
+	answerChecker();
 	nextQuestion();	
 	timer();
+
 });
 
-
 $(".answerB").on("click", function() {
+	chosenAnswer = questionArray[order].answerB;
+	answerChecker();
 	nextQuestion();	
 	timer();
 });
 
 $(".answerC").on("click", function() {
+	chosenAnswer = questionArray[order].answerC;
+	answerChecker();
 	nextQuestion();	
 	timer();	
 });
 
 $(".answerD").on("click", function() {
+	chosenAnswer = questionArray[order].answerD;
+	answerChecker();
 	nextQuestion();	
 	timer();
 });
