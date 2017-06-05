@@ -16,7 +16,7 @@ var questionArray = [ 	//An array of objects. Each object has properties (questi
 		answerB: "A planck length",
 		answerC: "One micron",
 		answerD: "A helameter",
-		correctAnswer: "A planck length"
+		correctAnswer: "A planck length",
 	},
 
 	questB = {
@@ -25,7 +25,7 @@ var questionArray = [ 	//An array of objects. Each object has properties (questi
 		answerB: "An ongoing chemical reaction where hydrogen is turned into helium",
 		answerC: "The star that is nearest to earth",
 		answerD: "All of the above",
-		correctAnswer: "All of the above"
+		correctAnswer: "All of the above",
 	},
 
 	questC = {
@@ -34,7 +34,7 @@ var questionArray = [ 	//An array of objects. Each object has properties (questi
 		answerB: "Based on the Greek myth; Opening Pandora's box to see if the cat is alive or dead represents taking a seemingly innocent and tiny action that ends up having all consuming and disatorous concequences.",
 		answerC: "Marie Curie's short term lab assistent's cat, who was unintentianaly (and unfortunatly for the cat), instramental in the discovery of radiation.",
 		answerD: "When the Cromulens show up on earth, and force the planet to compete in an inter-planitary version of who's got talent, in episode 5, season 1 of Rick and Morty (Get Schwifty). Shrodinger's Cat was the name of one of the more unique bands that competed against earth and ultimatly lost and got their planet destroyed.",
-		correctAnswer: "A thought experiment that represents the paridoxial nature of quantum superposition."	
+		correctAnswer: "A thought experiment that represents the paridoxial nature of quantum superposition.",	
 	},
 
 	questD = {
@@ -50,9 +50,9 @@ var questionArray = [ 	//An array of objects. Each object has properties (questi
 		question: "Which world famous physicist is director of the Hayden Planetarium in New York City?",
 		answerA: "Bill Nye the science guy",
 		answerB: "Dr. Richard Dawkins",
-		answerC: "Stephen Hawkins",
-		answerD: "Neil Degrasse Tyson",
-		correctAnswer: "Neil Degrasse Tyson"
+		answerC: "Neil Degrasse Tyson",
+		answerD: "Steven Hawkins",
+		correctAnswer: "Neil Degrasse Tyson",
 	},
 
 	questF = {
@@ -61,7 +61,7 @@ var questionArray = [ 	//An array of objects. Each object has properties (questi
 		answerB: "NASA scientists created a machine that was temperaraly attached to the satalite in a subsequent mission in 1993, that meticulously re-ground the main lense to componsate for the warping that occurred during launch",
 		answerC: "The focusing proplem seemed to just 'fix itself'. One of the many misteries of space.",
 		answerD: "Performing a record setting 5 space walks in 5 days, astronauts retrofitted the telescope with software and hardware that compensated for the miscalculation in the design of convex angle of the main telescope lense.",
-		correctAnswer: "Performing a record setting 5 space walks in 5 days, astronauts retrofitted the telescope with software and hardware that compensated for the miscalculation in the design of convex angle of the main telescope lense."
+		correctAnswer: "Performing a record setting 5 space walks in 5 days, astronauts retrofitted the telescope with software and hardware that compensated for the miscalculation in the design of convex angle of the main telescope lense.",
 	},
 ];
 
@@ -80,6 +80,9 @@ $("#title").text(title);	// Displays the game title.
 $("#start").text(startButton);	// Displays the start button
 
 function nextQuestion() {
+		
+	if (order < (questionArray.length - 1)) {
+
 	order++;
 	count = 45;
 	
@@ -88,7 +91,12 @@ function nextQuestion() {
     	$("#answerB").text(questionArray[order].answerB);
     	$("#answerC").text(questionArray[order].answerC);
     	$("#answerD").text(questionArray[order].answerD);
-}
+	} 
+
+	else {
+		endGame();
+	}
+};
 
 function timer() {
 	count=count-1;
@@ -112,14 +120,23 @@ function answerChecker() {
 
 	if (chosenAnswer === correctAnswers) {
 		rightAnswers++;
-		console.log("correct: " + rightAnswers)
 	
 	} else if (chosenAnswer !== correctAnswers) {
 		wrongAnswers++;
-		console.log("wrong: " + wrongAnswers)
-	} else {
-		endGame();
 	}
+};
+
+function endGame() {
+	console.log("endgame!")
+	clearInterval(counter);
+	$("#title").text(title);
+	$("#timer").remove();
+	$("#question").remove();
+	$("#answerA").text("You got " + rightAnswers + " answers correct");
+   	$("#answerB").text("You got " + wrongAnswers + " answers wrong");
+    $("#answerC").text("You ran out of time " + missedAnswers + " times");
+    $("#answerD").text("Great Job Space Travaler!")
+
 };
 
 $(".start").on("click", function() {	// A function that responds to clicking the start button.
@@ -157,19 +174,3 @@ $(".answerD").on("click", function() {
 	nextQuestion();	
 	timer();
 });
-
-function endGame() {
-	
-	if (order === (questionArray.length)) {
-	console.log("endgame!")
-	clearInterval(counter);
-
-	$("#question").remove();
-	$("#title").text(title);
-	$("#answerA").text(rightAnswers);
-   	$("#answerB").text(wrongAnswers);
-    $("#answerC").text(missedAnswers);
-    $("#answerD").text("Great Job Space Travaler!")
-}
-
-};
