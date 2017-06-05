@@ -62,7 +62,7 @@ var questionArray = [ 	//An array of objects. Each object has properties (questi
 		answerC: "The focusing proplem seemed to just 'fix itself'. One of the many misteries of space.",
 		answerD: "Performing a record setting 5 space walks in 5 days, astronauts retrofitted the telescope with software and hardware that compensated for the miscalculation in the design of convex angle of the main telescope lense.",
 		correctAnswer: "Performing a record setting 5 space walks in 5 days, astronauts retrofitted the telescope with software and hardware that compensated for the miscalculation in the design of convex angle of the main telescope lense."
-	}
+	},
 ];
 
 var title = "Cosmic Quiz";	// A variable for the game title.
@@ -106,19 +106,19 @@ function timer() {
 	}
 };
 
-// function stopTimer() {
-// 	clearInterval(counter);
-// };
-
 function answerChecker() {
-var correctAnswers = questionArray[order].correctAnswer;
-console.log(questionArray[order].correctAnswer);
+	var correctAnswers = questionArray[order].correctAnswer;
+	console.log(questionArray[order].correctAnswer);
+
 	if (chosenAnswer === correctAnswers) {
 		rightAnswers++;
 		console.log("correct: " + rightAnswers)
+	
 	} else if (chosenAnswer !== correctAnswers) {
 		wrongAnswers++;
 		console.log("wrong: " + wrongAnswers)
+	} else {
+		endGame();
 	}
 };
 
@@ -157,3 +157,19 @@ $(".answerD").on("click", function() {
 	nextQuestion();	
 	timer();
 });
+
+function endGame() {
+	
+	if (order === (questionArray.length)) {
+	console.log("endgame!")
+	clearInterval(counter);
+
+	$("#question").remove();
+	$("#title").text(title);
+	$("#answerA").text(rightAnswers);
+   	$("#answerB").text(wrongAnswers);
+    $("#answerC").text(missedAnswers);
+    $("#answerD").text("Great Job Space Travaler!")
+}
+
+};
