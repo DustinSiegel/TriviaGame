@@ -46,7 +46,7 @@ body {
 	text-align: center;
 }
 
-.answerB {
+.answerB, .answerC, .answerD {
 	color: #f6f6f6;
 	margin-top: 10px;
 	font-family: 'Aldrich';
