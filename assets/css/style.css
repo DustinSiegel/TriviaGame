@@ -1,11 +1,13 @@
+/*Style for the background of the page*/
 body {
-	background-image: url("../images/space2.jpg");
+	background-image: url("../images/space2.jpg");	
     background-position: center;
     background-size: cover;
     width: 100%;
     height: 100%;
 }
 
+/*Style and position for the title wording*/
 .title {
 	color: #f6f6f6;
 	margin-top: 85px;
@@ -14,6 +16,7 @@ body {
 	letter-spacing: 10px;
 }
 
+/*Style and position for the start button*/
 .start {
 	color: #f6f6f6;
 	margin-top: 135px;
@@ -22,6 +25,7 @@ body {
 	text-align: center;
 }
 
+/*Style  and position for the timer*/
 .timer {
 	color: #f6f6f6;
 	margin-top: 85px;
@@ -30,6 +34,7 @@ body {
 	text-align: center;
 }
 
+/*Style and position of the question display*/
 .question {
 	color: #f6f6f6;
 	margin-top: 85px;
@@ -38,6 +43,7 @@ body {
 	letter-spacing: 10px;
 }
 
+/*Style and position of the first answer option*/
 .answerA {
 	color: #f6f6f6;
 	margin-top: 100px;
@@ -46,6 +52,7 @@ body {
 	text-align: center;
 }
 
+/*Style and position of the rest of the answer options*/
 .answerB, .answerC, .answerD {
 	color: #f6f6f6;
 	margin-top: 10px;
