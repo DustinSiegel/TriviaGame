@@ -84,7 +84,7 @@ function nextQuestion() {	// A function that pushes through the array and pushes
 	if (order < (questionArray.length - 1)) {	// An if statement that checks the order number against the number of objects in the array.
 
 	order++;	// This indicates to add one to the order variable.
-	count = 45;	// This sets the counter to 45 seconds.
+	count = 60;	// This sets the counter to 45 seconds.
 	
 		$("#question").text(questionArray[order].question);	// This sets the current question value to the upper right corner of the screen.
     	$("#answerA").text(questionArray[order].answerA);	// These set the current answer values to the center of the screen in order.
